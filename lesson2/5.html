@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Document</title>
+    </head>
+    <body>
+        <script>
+            "use strict";
+            function sum(a, b) {
+                return a + b;
+            }
+
+            function subtraction(a, b) {
+                return a - b;
+            }
+
+            function division(a, b) {
+                return a / b;
+            }
+
+            function multiplication(a, b) {
+                return a * b;
+            }
+
+            function mathOperation(arg1, arg2, operation) {
+                let result = null;
+                switch (operation) {
+                    case 'sum':
+                        result = sum(arg1, arg2);
+                        break;
+                    case 'subtraction':
+                        result = subtraction(arg1, arg2);
+                        break;
+                    case 'division':
+                        result = division(arg1, arg2);
+                        break;
+                    case 'multiplication':
+                        result = multiplication(arg1, arg2);
+                        break;
+                    default:
+                        throw new Error('Undefined operation: ' + operation);
+                }
+
+                return result;
+            }
+
+            let a = 3, b = 6;
+
+            console.log(mathOperation(a, b, 'sum'));
+            console.log(mathOperation(a, b, 'subtraction'));
+            console.log(mathOperation(a, b, 'division'));
+            console.log(mathOperation(a, b, 'multiplication'));
+        </script>
+    </body>
+</html>
