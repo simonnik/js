@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Document</title>
+    </head>
+    <body>
+        <script>
+            "use strict";
+
+            function nToO(number) {
+                if (number < 0 || number > 999) {
+                    return {};
+                }
+
+                let hundreds,
+                    tens,
+                    units;
+
+                [hundreds, tens, units] = ('' + number).split('');
+
+                return {
+                    units: +(isNaN(units) ? (isNaN(tens) ? hundreds : tens) : units),
+                    tens: +(isNaN(units) ? (isNaN(tens) ? 0 : hundreds) : tens),
+                    hundreds: +(isNaN(units) ? 0 : hundreds)
+                }
+            }
+
+            console.log(nToO(908));
+        </script>
+    </body>
+</html>
