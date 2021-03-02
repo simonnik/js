@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Document</title>
+    </head>
+    <body>
+        <script>
+            "use strict";
+
+            // es5
+            function PostEs5(author, text, date) {
+                this.author = author;
+                this.text = text;
+                this.date = date;
+            }
+
+            PostEs5.prototype.edit = function (text) {
+                this.text = text;
+            };
+
+            function AttachedPostEs5(author, text, date) {
+                PostEs5.call(this, author, text, date);
+                this.highlighted = false;
+            }
+
+            AttachedPostEs5.prototype = Object.create(PostEs5.prototype);
+            AttachedPostEs5.prototype.constructor = AttachedPostEs5;
+
+            AttachedPostEs5.prototype.makeTextHighlighted = function ()  {
+                this.highlighted = true;
+            };
+
+            // es6
+            class PostEs6 {
+                constructor(author, text, date) {
+                    this.author = author;
+                    this.text = text;
+                    this.date = date;
+                }
+
+                edit(text){
+                    this.text = text;
+                }
+            }
+
+            class AttachedPostEs6 extends PostEs6 {
+                constructor(author, text, date) {
+                    super(author, text, date);
+                    this.highlighted = false;
+                }
+
+                makeTextHighlighted(){
+                    this.highlighted = true;
+                }
+            }
+
+            let attachedPostEs5 = new AttachedPostEs5('Роберт Кийосаки', 'Богатый папа, бедный папа', '21-01-1997');
+            console.log(attachedPostEs5);
+            attachedPostEs5.edit('Римский папа');
+            console.log(attachedPostEs5);
+            attachedPostEs5.makeTextHighlighted();
+            console.log(attachedPostEs5);
+
+            let attachedPostEs6 = new AttachedPostEs6('Роберт Кийосаки', 'Богатый папа, бедный папа', '21-01-1997');
+            console.log(attachedPostEs6);
+            attachedPostEs6.edit('Римский папа');
+            console.log(attachedPostEs6);
+            attachedPostEs6.makeTextHighlighted();
+            console.log(attachedPostEs6);
+        </script>
+    </body>
+</html>
